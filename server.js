@@ -28,6 +28,33 @@ app.get('/api/vi/pets', (req, res) => {
 
 //GET - pet by id - '/api/v1/pets/:name'
 
+// get pet by name
+app.get('/api/v1/pets/:name', (req, res) => {
+  const { name } = req.query;
+
+
+    // find the pet in the pets array
+    const pet = pets.find(pet => pet.name === name);
+
+    // send the pet as a response
+    res.send(pets);
+
+});
+
+// get pet by owner with query string
+app.get('/api/v1/pets/owner', (req, res) => {
+    // get the owner from the request
+const { owner } = req.params;
+
+    // find the pet in the pets array
+    const pet = pets.find(pet => pet.owner === owner);
+
+    // send the pet as a response
+res.send(pets);
+});
+
+
+
 app.listen(PORT, () => {
     console.log(`listing on port: ${PORT}`);
 })
